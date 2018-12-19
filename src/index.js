@@ -6,7 +6,9 @@ import * as serviceWorker from './serviceWorker';
 //import CounterButton from './lesons2';
 //import CounterButton from './Props,PropsType';
 //import {Lesons,Counter,Button} from './lesons4Props';
-import App1 from './lessons6';
+//import App2 from './lessons7(Lists&keys)';
+//import Tabs from './lessons8(Fragments&Css)';
+import Forms from './lessons9(Forms)';
 
 
 //React.createElement('input',{className:'just-class'});     
@@ -14,7 +16,7 @@ import App1 from './lessons6';
 
 
 //ReactDOM.render(<Lesons child={<Button/>}><Counter/></Lesons>, document.getElementById('root'));
-ReactDOM.render(<App1/>, document.getElementById('root'));
+ReactDOM.render(<Forms/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

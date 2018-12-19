@@ -1,28 +1,6 @@
-//  Условный рендеринг  Conditional Rendering
-
 import React,{Fragment,Component} from 'react';
 
-//const ValidationMsg = ({val})=>{
-  //  if(val>=10){
-    //    return<h2>Grate than 10</h2>
-    //}else{
-      //  return<h3>Less than <em>10</em></h3>
-    //}
-//}
 
-const App = ()=>{
-    const val = 9;
-    return(
-        //<ValidationMsg val={8}/>
-        <div>
-            {/*ternary*/}
-            {val>=10 ? <h2>Grate than 10</h2> : <h3>Less than <em>10</em></h3>}
-            {/*&& */}
-            {val && <span>We have val</span>}
-        </div>
-
-    );
-}
 
 const Tab1 =()=>(
     <h1>Text of tab1    </h1>
@@ -34,7 +12,27 @@ const Tab3 =()=>(
     <h1>Text of tab3    </h1>
 )
 
-class App1 extends Component{
+ const people = ['Jack','Max','Leo','Alex'];
+
+ const TABS_BTN = [
+    {   
+        dataName: 1,
+        title:'Tab1',
+        icon:'+',
+    },
+    {
+        dataName: 2,
+        title:'Tab2',
+        icon:'-',
+    },
+    {
+        dataName: 3,
+        title:'Tab3',
+        icon:'*',
+    } 
+ ];
+
+class App2 extends Component{
 
     state = {
         activeTab:1,
@@ -50,9 +48,14 @@ class App1 extends Component{
         console.log(this.state);
         return(
             <Fragment>
-                <button data-name={1} onClick={this.handleTab}>Tab1</button>
-                <button data-name={2} onClick={this.handleTab}>Tab2</button>
-                <button data-name={3} onClick={this.handleTab}>Tab3</button>
+               {TABS_BTN.map(({dataName,title,icon})=>(
+                   <button
+                   key={`${dataName}-${title}`}
+                   data-name={dataName}
+                   onClick={this.handleTab}
+                   >{icon}{title}</button>
+               ))
+               }
                 {activeTab === 1 ? <Tab1/> : activeTab === 2 ? <Tab2/> : <Tab3/>}
                 {/*или так*/}
                 {activeTab === 1 && <Tab1/>}
@@ -61,10 +64,15 @@ class App1 extends Component{
                 <div>
                     {`Active tab is:${activeTab === 1 ? 'first' : activeTab === 2 ? 'second' : 'third'}`}
                 </div>
+                <ul>
+                    {people.map((person,index)=>(
+                        <li key = {index}>{person}</li>
+                    ))}
+                </ul>
                 </Fragment>
         );
     }
 }
 
 
-export default  App1;
+export default  App2;
