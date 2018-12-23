@@ -12,7 +12,7 @@ const POSITIONS = [
 
 ]
 
-class Forms extends Component{
+class Forms1 extends Component{
     state={
         inputText:'',
         textareaText:'',
@@ -23,6 +23,7 @@ class Forms extends Component{
             position:'',        }
     }
     handleInputChange = ({target:{value}})=>{
+        console.log(this.el.value);
         this.setState({
             inputText:value,
         })
@@ -53,7 +54,7 @@ class Forms extends Component{
         })
     }
 
-
+    getRef = (node) => {this.el = node};
     render(){
         const {inputText,textareaText,selectText, showData}=this.state;
         const{name,text,position}=showData;
@@ -63,7 +64,7 @@ class Forms extends Component{
                 {/* input*/}
                 <label>
                     Name:
-                    <input type="text" name="name" value={inputText} onChange= {this.handleInputChange} />
+                    <input ref={this.getRef} type="text" name="name" value={inputText} onChange= {this.handleInputChange} />
                 </label>
                 {/* Textarea*/}<br/>
                 <label htmlFor="Text">Text:</label>
@@ -86,4 +87,4 @@ class Forms extends Component{
     }
 }
 
-export default Forms;
+export default Forms1;

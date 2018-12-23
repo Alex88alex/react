@@ -12,7 +12,7 @@ const POSITIONS = [
 
 ]
 
-class Forms extends Component{
+class Forms1 extends Component{
     state={
         inputText:'',
         textareaText:'',
@@ -20,23 +20,30 @@ class Forms extends Component{
         showData:{
             name:'',
             text:'',
-            position:'',        }
+            position:'',       
+             }
+    }}
+
+    inputRef = React.createRef();
+    textareaRef = React.createRef();
+    selectRef = React.createRef();
+//не работает
+    componentWillMount(){   
+        console.log('cwm',this.inputRef);
     }
-    handleInputChange = ({target:{value}})=>{
+    componentDidMount(){
+        console.log('cdm',this.inputRef);
+    }
+
+    handleChange = ()=>{
+        
         this.setState({
-            inputText:value,
-        })
+            inputText:this.inputRef.current..value,
+            textareaText:this.textareaRef.current..value,
+            selectText:this.selectReff.current..value,
+        });
     }
-    handleTexareaChange = ({target:{value}})=>{
-        this.setState({
-            textareaText:value,
-        })
-    }
-    handleSelectChange = ({target:{value}})=>{
-        this.setState({
-            selectText:value,
-        })
-    }
+    
     
     handleShow= (e) =>{
         e.preventDefault();
@@ -53,7 +60,7 @@ class Forms extends Component{
         })
     }
 
-
+    
     render(){
         const {inputText,textareaText,selectText, showData}=this.state;
         const{name,text,position}=showData;
@@ -63,13 +70,13 @@ class Forms extends Component{
                 {/* input*/}
                 <label>
                     Name:
-                    <input type="text" name="name" value={inputText} onChange= {this.handleInputChange} />
+                    <input ref={this.inputRef} type="text" name="name" value={inputText} onChange= {this.handleChange} />
                 </label>
                 {/* Textarea*/}<br/>
                 <label htmlFor="Text">Text:</label>
-                <textarea id="text" value={textareaText} onChange= {this.handleTexareaChange}></textarea>
+                <textarea ref={this.textareaRef} id="text" value={textareaText} onChange= {this.handleChange}></textarea>
                 {/*Select*/}
-                <select value={selectText} onChange={this.handleSelectChange}>
+                <select ref={this.selectRef} value={selectText} onChange={this.handleChange}>
                     {POSITIONS.map(({id,value,title})=>(
                         <option key={id} value={value}>{title}</option>
                     ))}
@@ -86,4 +93,3 @@ class Forms extends Component{
     }
 }
 
-export default Forms;
