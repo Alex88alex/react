@@ -12,7 +12,8 @@ import * as serviceWorker from './serviceWorker';
 //import Forms1 from './lessons10(refs)';
 //import LoadingHOC from './Higt Order Component';
 //import Lesons from './lessons15(Context)';
-import News from './ls16(worcks with API)';
+//import News from './ls16(worcks with API)';
+import News from './ls16(worcks with API Part2)';
 
 
 //React.createElement('input',{className:'just-class'});     

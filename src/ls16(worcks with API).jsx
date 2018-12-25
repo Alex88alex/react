@@ -12,11 +12,26 @@ class News extends Component{
     }
     componentDidMount(){
         const {seachQuery}=this.state;
+        this.fetchData(seachQuery);
+    }
+    fetchData = (seachQuery) => {
         fetch   (`${BASE_PATH}${SEARCH_PATH}?${SEARCH_PARAM}${seachQuery}`)
         .then(res =>res.json())
         .then(result=>this.setNews(result))
         .catch(error=>error);
+    } 
+    handleInputChange = ({target:{value}})=>{
+        this.setState({
+            seachQuery:value
+        })
     }
+    getSearch = ({key}) => {
+        if(key === 'Enter'){
+            const{seachQuery} = this.state;
+            this.fetchData(seachQuery);
+        }
+    }
+    
     setNews = result =>{
         this.setState({result});
     }
@@ -26,6 +41,7 @@ class News extends Component{
         console.log(result);
         return (
             <div className="wrapper">
+            <input onKeyPress={this.getSearch} onChange={this.handleInputChange} value={seachQuery} />
             <ul className="newsList">
             <li>
             {hits.map(({author,created_at,num_comments,objectID,title,points,url})=>
